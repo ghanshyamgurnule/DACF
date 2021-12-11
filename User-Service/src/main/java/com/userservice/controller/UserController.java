@@ -1,10 +1,9 @@
 package com.userservice.controller;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,30 +12,36 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.userservice.model.Coupon;
 import com.userservice.model.User;
 import com.userservice.repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 	
-	@RequestMapping("/home")
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	
+	@GetMapping("/home")
 	public String homepage()
 	{
 		return "HelloWorldUser";
 	}
 	
-	@PostMapping("/adduser")
+	@PostMapping("/addUser")
 	public String addUser(@RequestBody User user){
 		userRepository.save(user);
 		return "Added user with Id"+user.getId(); 
 	}
 	
-	@GetMapping("/getuser")
+	@GetMapping("/getUser")
 	public List<User> getUser(){
 		return userRepository.findAll(); 
 	}
@@ -53,5 +58,11 @@ public class UserController {
 		userRepository.deleteById(id);
 		return "Profile Deleted";
 	}
+	
+	@GetMapping("/getAllCoupon")
+	public List<Coupon> getAllcoupon(){
+		return Arrays.asList(restTemplate.getForObject("http://Coupon-Service/coupon/getAllCoupon", Coupon[].class ));
+	}
+	
 
 }

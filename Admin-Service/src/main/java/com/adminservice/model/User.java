@@ -1,5 +1,6 @@
-package com.userservice.model;
+package com.adminservice.model;
 
+import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +14,12 @@ public class User {
 	private String email;
 	private int password;
 	private String city;
-	private String gender;	
+	private String gender;
+	private ArrayList<Integer> myCoupon;
+	
+	public User() {
+		
+	}
 	
 	public User(int id, String name, String email, int password, String city, String gender) {
 		super();
@@ -60,7 +66,12 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
+	public ArrayList<Integer> getMyCoupon() {
+		return myCoupon;
+	}
+	public void setMyCoupon(ArrayList<Integer> myCoupon) {
+		this.myCoupon = myCoupon;
+	}
 	
 	
 	

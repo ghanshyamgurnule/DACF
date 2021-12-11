@@ -1,11 +1,11 @@
-package com.couponservice.repository;
+package com.userservice.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.couponservice.model.Coupon;
+import com.userservice.model.Coupon;
+
 
 public interface CouponRepository extends MongoRepository<Coupon, Integer>{
-	
-	public Coupon findCouponById(int id);
 
+	public Coupon getCouponById(int id);
 }
