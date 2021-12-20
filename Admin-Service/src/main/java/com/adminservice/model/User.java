@@ -1,21 +1,14 @@
 package com.adminservice.model;
 
-import java.util.ArrayList;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "UserDB")
 public class User {
 	
-	@Id
 	private int id;
 	private String name;
 	private String email;
 	private int password;
 	private String city;
 	private String gender;
-	private ArrayList<Integer> myCoupon;
 	
 	public User() {
 		
@@ -66,13 +59,6 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public ArrayList<Integer> getMyCoupon() {
-		return myCoupon;
-	}
-	public void setMyCoupon(ArrayList<Integer> myCoupon) {
-		this.myCoupon = myCoupon;
-	}
-	
-	
+		
 	
 }

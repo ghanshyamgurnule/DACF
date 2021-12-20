@@ -23,38 +23,52 @@ public class CouponController {
 	@Autowired
 	CouponRepository couponRepository;
 	
-	@RequestMapping("/home")
+	@GetMapping("/home")
 	public String homepage()
 	{
 		return "HelloWorld";
 	}
 	
+	//------- add coupon
 	@PostMapping("/addCoupon")
 	public String addCoupon(@RequestBody Coupon coupon){
 		couponRepository.save(coupon);
 		return "Added coupon with Id"+coupon.getId(); 
 	}
 	
+	//------- fetch all coupon 
+
 	@GetMapping("/getAllCoupon")
 	public List<Coupon> getAllcoupon(){
 		return couponRepository.findAll(); 
 	}
 	
+	//------- fetch coupon by id
+
 	@GetMapping("/getCouponById/{id}")
-	public Optional<Coupon> getCouponById(@RequestBody Coupon coupon, @PathVariable int id){
+	public Optional<Coupon> getCouponById( @PathVariable int id){
 		 return couponRepository.findById(id); 
 	}
 	
+	//-------fetch coupon by category
+	@GetMapping("/getCouponByCategory/{category}")
+	public List<Coupon> getCouponByCategory( @PathVariable String category){
+		 return couponRepository.findByCategory(category); 
+	}
+	
+	//-------update coupon details by id
 	@PutMapping("/updateCoupon/{id}")
 	public String updatecoupon(@RequestBody Coupon coupon, @PathVariable int id) {
 		couponRepository.save(coupon);
 		return "Coupon Updated "; 		
 	}
 	
+	//-------delete coupon by id
 	@DeleteMapping("/delete/{id}")
 	public String deleteCoupon(@PathVariable int id)
 	{
 		couponRepository.deleteById(id);
 		return "Coupon Deleted";
 	}
+	
 }

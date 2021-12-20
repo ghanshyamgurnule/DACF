@@ -1,7 +1,6 @@
 server:
    port: 8100
-   application:
-       name: Api-Gateway
+  
   
    
 spring:
@@ -22,6 +21,12 @@ spring:
         uri: http://localhost:8083/
         predicates:
         - Path=/user/**
+      - id: Cart-Service
+        uri: http://localhost:8084/
+        predicates:
+        - Path=/cart/**
+  application:
+       name: Api-Gateway
         
      # - id: Api-Gateway
     #    uri: http://localhost:8100/

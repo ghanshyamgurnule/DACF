@@ -6,6 +6,4 @@ import com.userservice.model.User;
 
 public interface UserRepository extends MongoRepository<User, Integer>{
 
-	//public Coupon findCouponById(int id);
-
 }

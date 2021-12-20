@@ -1,9 +1,7 @@
 package com.userservice.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 public class Coupon {
+	
 	private int id;
 	private String couponName;
 	private String desc;
